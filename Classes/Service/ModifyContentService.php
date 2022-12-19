@@ -84,7 +84,9 @@ class ModifyContentService implements SingletonInterface
 			return $match[0];
 		}
 
-		if(empty($attr_array['rel'])){
+		if($attr_array['rel']=='dofollow') {
+            unset($attr_array['rel']);
+        } elseif(empty($attr_array['rel'])){
 			$attr_array['rel'] = 'nofollow';
 		}elseif(!preg_match('/nofollow/', $attr_array['rel'])){
 			$attr_array['rel'].= ' nofollow';
